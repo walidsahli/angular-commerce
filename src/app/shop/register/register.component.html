@@ -1,0 +1,93 @@
+<form [formGroup]="registerForm" novalidate class="container">
+    <h1>Register :</h1>
+    <div class="row">
+        <mat-form-field class="col-5 margin-register-fields">
+            <input matInput placeholder="First Name :" formControlName="firstName">
+            <mat-error
+                *ngIf="registerForm.controls['firstName'].invalid && (registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched)">
+                <span *ngIf="registerForm.controls['firstName'].errors.required">First Name is required</span>
+                <span *ngIf="registerForm.controls['firstName'].errors.minlength">First Name must contain more than 2
+                    caracters</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-5 margin-register-fields">
+            <input matInput placeholder="Last Name :" formControlName="lastName">
+            <mat-error
+                *ngIf="registerForm.controls['lastName'].invalid && (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)">
+                <span *ngIf="registerForm.controls['lastName'].errors.required">Last Name is required</span>
+                <span *ngIf="registerForm.controls['lastName'].errors.minlength">Last Name must contain more than 2
+                    caracters</span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field class="col-5 margin-register-fields">
+            <input matInput placeholder="Username :" formControlName="username">
+            <mat-error
+                *ngIf="registerForm.controls['username'].invalid && (registerForm.controls['username'].dirty || registerForm.controls['username'].touched)">
+                <span *ngIf="registerForm.controls['username'].errors.required">Username is required</span>
+                <span *ngIf="registerForm.controls['username'].errors.minlength">Username must contain more than 4
+                    caracters</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-5 w-100 margin-register-fields">
+            <input matInput placeholder="Email :" formControlName="email">
+            <mat-error
+                *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+                <span *ngIf="registerForm.controls['email'].errors.required">Email is required</span>
+                <span *ngIf="registerForm.controls['email'].errors.email">Email must be in valid format</span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field class="col-5 margin-register-fields">
+            <input matInput placeholder="Password :" formControlName="password" [type]="hidepass ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hidepass = !hidepass" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidepass">
+                <mat-icon>{{hidepass ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error
+                *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+                <span *ngIf="registerForm.controls['password'].errors.required">Password is required</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-5 margin-register-fields">
+            <input matInput placeholder="Confirm Password :" formControlName="comfirmpassword"
+                [type]="hidecomfirm ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hidecomfirm = !hidecomfirm">
+                <mat-icon>{{hidecomfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error
+                *ngIf="(registerForm.controls['password'].dirty || registerForm.controls['password'].touched) || registerForm.controls['password'].value != registerForm.controls['comfirmpassword'].value">
+                <span *ngIf="registerForm.controls['comfirmpassword'].hasError('NoPassswordMatch')">
+                    Password doesn't match</span>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field class="col-5 margin-register-fields">
+            <input matInput placeholder="Phone number :" formControlName="phoneNumber">
+            <mat-error
+                *ngIf="registerForm.controls['phoneNumber'].invalid && (registerForm.controls['phoneNumber'].dirty || registerForm.controls['phoneNumber'].touched)">
+                <span *ngIf="registerForm.controls['phoneNumber'].errors.required">Phone number is required</span>
+                <span *ngIf="registerForm.controls['phoneNumber'].errors.pattern">Phone number is invalid</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-5 w-100 margin-register-fields">
+            <input matInput placeholder="Location :" formControlName="location">
+        </mat-form-field>
+    </div>
+
+
+
+    <div class="w-100 btn-login-block row">
+        <button mat-button class="login-btn col-4" [disabled]="!isFormValid" (click)=register()> Register </button>
+        <button mat-button class="cancel-btn col-4" (click)="closeRegister()"> Cancel </button>
+    </div>
+</form>

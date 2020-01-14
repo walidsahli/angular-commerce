@@ -1,0 +1,27 @@
+<form [formGroup]="loginForm" novalidate class="container">
+    <h1>Login :</h1>
+    <mat-form-field class="row w-100 margin-login-fields">
+        <input matInput id="login-username" placeholder="Username :" formControlName="username">
+        <mat-error
+            *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+            <span *ngIf="loginForm.controls['username'].errors.required">Username is required</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="row w-100 margin-login-fields">
+        <input matInput id="login-password" placeholder="Password :" formControlName="password"  [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error
+            *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+            <span *ngIf="loginForm.controls['password'].errors.required">Password is required</span>
+        </mat-error>
+    </mat-form-field>
+
+    <div class="w-100 btn-login-block row">
+        <button mat-button class="login-btn col-4" [disabled]="!isFormValid" (click)=login()> Login </button>
+        <button mat-button class="cancel-btn col-4" (click)="closeLogin()"> Cancel </button>
+    </div>
+</form>

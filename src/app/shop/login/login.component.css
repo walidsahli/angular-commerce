@@ -1,0 +1,16 @@
+.login-btn{
+    border: 1px grey solid;
+    margin: 2%;
+}
+.cancel-btn{
+    border: 1px rgb(255, 49, 49) solid;
+    color: rgb(255, 49, 49);
+    margin: 2%;
+}
+.btn-login-block{
+    justify-content: space-between;
+}
+.margin-login-fields{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
