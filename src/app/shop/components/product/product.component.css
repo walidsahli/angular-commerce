@@ -1,20 +1,13 @@
-.card{
-    width: 14em;
-    height: 15em;
+.card{    
+    width: 224px;
+    height: 275px;
     margin: 1em;
     transition: box-shadow 0.3s;
     box-shadow: 2px 2px 2px rgb(70,70, 70);
-    border-radius: 20px;
-    border-color: rgb(70, 70, 70);
+    border-radius: 2px;
 }
 .product-picture{
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
     margin: 0 auto;
-    border-radius: 20px;
-}
-.card:hover{
-    box-shadow: 5px 5px 5px rgb(70, 70, 70);
-    cursor: pointer;
-    border-color: rgb(70, 70, 70);
 }

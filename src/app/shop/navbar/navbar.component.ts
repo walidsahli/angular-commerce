@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { ServicesService } from 'src/shared/services/services.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,32 +12,30 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private Dialog : MatDialog ) {
+  private loggedIn: boolean;
+
+  constructor(private Dialog: MatDialog,
+    private api: ServicesService,
+    private router: Router) {
     window.onscroll = () => {
       if (window.scrollY > 50) {
         document.getElementById("navbar").style.height = "50px";
-        document.getElementById("login").style.visibility = "visible"
-        document.getElementById("login").style.opacity = "1"
-        document.getElementById("register").style.visibility = "visible"
-        document.getElementById("register").style.opacity = "1"
       } else {
         document.getElementById("navbar").style.height = "100px";
-        document.getElementById("login").style.visibility = "hidden"
-        document.getElementById("login").style.opacity = "0"
-        document.getElementById("register").style.visibility = "hidden"
-        document.getElementById("register").style.opacity = "0"
       }
     }
   }
+  ngOnInit() {
+    this.api.loggedIn.subscribe(isLoggedIn => {
+      this.loggedIn = isLoggedIn
+    });
+  }
 
-  openLogin(username : string = ''): void {
+  openLogin(username: string = ''): void {
     const dialogRef = this.Dialog.open(LoginComponent, {
       width: '50wv',
       data: username,
-      disableClose : true
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
+      disableClose: true
     });
   }
 
@@ -45,13 +45,23 @@ export class NavbarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result.success){
+      if (result.success) {
         this.openLogin(result.username)
       }
     });
   }
 
-  ngOnInit() {
+  logout() {
+    localStorage.clear();
+    this.api.loggedIn.next(false)
+  }
+
+  goToCart() {
+    try {
+      this.router.navigateByUrl('/cart')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 }

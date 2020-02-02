@@ -1,0 +1,28 @@
+.info-container{
+    position: absolute;
+    top: 0;
+    left: -1;
+    background-color: rgb(98, 98, 98);
+    color: white;
+    padding: 5px;
+    border-bottom-right-radius: 100%;
+    transition: width 0.5s , height 1s ,all 0.8s;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+}
+#about-product{
+    display: none;
+    opacity: 0;
+    font-size: 12px;
+}
+.info-container:hover{
+    background-color: rgba(97, 97, 97, 0.671);
+    width: 224px;
+    height: 227px;
+    border-bottom-right-radius :0%
+}
+.info-container:hover #about-product{
+    display: inline;
+    opacity: 0.8;
+}

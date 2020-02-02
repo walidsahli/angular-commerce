@@ -16,14 +16,27 @@
 }
 .btn-light{
     border: 1px solid #575757;
-    visibility:hidden;
-    opacity:0;
-    transition:visibility 0.3s linear,opacity 0.3s linear;
 }
 .btn-navbar-block{
-    width: 20%;
+    width: fit-content;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+#shopping_cart{
+    width: 42px;
+    height: fit-content;
+    border: 1px solid;
+    border-radius: 28px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: width 0.2s;
+}
+
+#badge-login{
+    font-size: 5px;
 }

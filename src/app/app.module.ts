@@ -16,6 +16,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './shop/register/register.component';
 import { ServicesService } from 'src/shared/services/services.service';
 import { HttpClientModule } from '@angular/common/http';
+import { InfoComponent } from './shop/components/info/info.component';
+import { CartComponent } from './cart/cart.component';
+import { CartGuardGuard } from 'src/shared/guards/cart-guard.guard';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     ProductComponent,
     BadgeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    InfoComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MatSnackBarModule
   ],
-  providers: [ServicesService],
+  providers: [ServicesService, CartGuardGuard],
   bootstrap: [AppComponent],
   entryComponents:[LoginComponent,RegisterComponent]
 })
